@@ -1,213 +1,564 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PARTAP EGG MART</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partab Egg Mart - Fresh & Genuine Eggs</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #FF6B35;
+            --secondary: #F7C548;
+            --dark: #1a1a2e;
+            --light: #fffbf0;
+            --success: #00C853;
+            --shadow: 0 10px 40px rgba(255, 107, 53, 0.3);
+        }
 
-<style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f4f4f4;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
 
-/* HERO SECTION */
-.hero {
-    position: relative;
-    height: 90vh;
-    background: url('https://images.unsplash.com/photo-1582727463364-5b6a89f3c1f5') center/cover no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
-}
+        body {
+            background: var(--light);
+            overflow-x: hidden;
+        }
 
-.overlay {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.6);
-}
+        /* Floating Elements */
+        .floating-badge {
+            position: fixed;
+            z-index: 1000;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 5px 20px rgba(255, 107, 53, 0.4);
+            animation: float 3s ease-in-out infinite;
+        }
 
-.hero-content {
-    position: relative;
-    z-index: 2;
-}
+        .floating-badge.left {
+            left: 20px;
+            top: 100px;
+        }
 
-.logo-circle {
-    width: 120px;
-    height: 120px;
-    background: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: auto;
-}
+        .floating-badge.right {
+            right: 20px;
+            top: 200px;
+            animation-delay: 1.5s;
+        }
 
-.logo-circle img {
-    width: 70px;
-}
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
 
-/* COMPANY NAME BIG */
-.company-name {
-    font-size: 48px;
-    font-weight: 900;
-    margin-top: 15px;
-    text-shadow: 2px 2px 12px rgba(255,193,7,0.9);
-    letter-spacing: 3px;
-}
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--dark) 0%, #16213e 100%);
+            padding: 20px 5%;
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+        }
 
-.tagline {
-    font-size: 18px;
-    margin-top: 8px;
-    animation: floatText 2s ease-in-out infinite alternate;
-}
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-@keyframes floatText {
-    from { opacity: 0.7; transform: translateY(5px); }
-    to { opacity: 1; transform: translateY(-5px); }
-}
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
 
-/* ORDER SECTION */
-.container {
-    background: white;
-    margin: -60px 15px 20px;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-}
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: white;
+            box-shadow: 0 5px 20px rgba(255, 107, 53, 0.5);
+            animation: pulse 2s infinite;
+        }
 
-h2 {
-    margin-top: 0;
-}
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
 
-select, input {
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    font-size: 16px;
-}
+        .logo-text h1 {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
 
-button {
-    width: 100%;
-    padding: 14px;
-    border: none;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: bold;
-    margin-top: 10px;
-    cursor: pointer;
-}
+        .logo-text p {
+            color: var(--secondary);
+            font-size: 0.85rem;
+        }
 
-.whatsapp-btn {
-    background: #28a745;
-    color: white;
-}
+        .header-contact {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
 
-.location-btn {
-    background: #34af23;
-    color: white;
-}
+        /* 3D WhatsApp & Call Buttons */
+        .btn-3d {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
 
-/* FEATURES */
-.features {
-    text-align: center;
-    margin: 20px 0;
-}
+        .btn-whatsapp {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            box-shadow: 0 8px 0 #0d5c2f, 0 15px 30px rgba(37, 211, 102, 0.4);
+        }
 
-.feature-box {
-    display: inline-block;
-    background: #28a745;
-    color: white;
-    padding: 10px 18px;
-    margin: 8px;
-    border-radius: 25px;
-    font-weight: bold;
-    font-size: 14px;
-}
+        .btn-whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 11px 0 #0d5c2f, 0 20px 40px rgba(37, 211, 102, 0.5);
+        }
 
-/* FOOTER LOCATION */
-.footer {
-    text-align: center;
-    padding: 20px;
-    background: #222;
-    color: white;
-    font-size: 14px;
-}
-</style>
-</head>
+        .btn-whatsapp:active {
+            transform: translateY(4px);
+            box-shadow: 0 4px 0 #0d5c2f, 0 8px 20px rgba(37, 211, 102, 0.3);
+        }
 
-<body>
+        .btn-call {
+            background: linear-gradient(135deg, var(--primary), #ff8c5a);
+            color: white;
+            box-shadow: 0 8px 0 #cc5429, 0 15px 30px rgba(255, 107, 53, 0.4);
+        }
 
-<!-- HERO -->
-<section class="hero">
-    <div class="overlay"></div>
-    <div class="hero-content">
-        <div class="logo-circle">
-            <img src="https://cdn-icons-png.flaticon.com/512/837/837560.png">
-        </div>
-        <h1 class="company-name">PARTAP EGG MART</h1>
-        <p class="tagline">Fresh • Natural • Farm Eggs 🥚</p>
-    </div>
-</section>
+        .btn-call:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 11px 0 #cc5429, 0 20px 40px rgba(255, 107, 53, 0.5);
+        }
 
-<!-- ORDER SECTION -->
-<div class="container">
-    <h2>Select Egg Option</h2>
+        .btn-call:active {
+            transform: translateY(4px);
+            box-shadow: 0 4px 0 #cc5429, 0 8px 20px rgba(255, 107, 53, 0.3);
+        }
 
-    <select id="eggPrice">
-        <option value="7">1 Egg - ₹7</option>
-    </select>
+        .btn-icon {
+            font-size: 1.4rem;
+        }
 
-    <input type="number" id="quantity" placeholder="Enter Quantity" min="1" value="1" oninput="calculateTotal()">
+        /* Hero Section */
+        .hero {
+            padding: 150px 5% 80px;
+            background: linear-gradient(135deg, var(--dark) 0%, #16213e 50%, #0f3460 100%);
+            position: relative;
+            overflow: hidden;
+        }
 
-    <h3>Total: ₹<span id="total">7</span></h3>
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/></svg>') repeat;
+            background-size: 30px 30px;
+        }
 
-    <input type="text" id="address" placeholder="Enter Your Full Delivery Address">
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
 
-    <button class="whatsapp-btn" onclick="orderNow()">Order Now on WhatsApp</button>
-    <button class="location-btn" onclick="sendLocation()">Send My Live Location</button>
-</div>
+        .hero-text h2 {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+            letter-spacing: 3px;
+        }
 
-<!-- FEATURES -->
-<div class="features">
-    <div class="feature-box">🚚 Fast Delivery</div>
-    <div class="feature-box">🥚 Quality Product</div>
-    <div class="feature-box">🤝 Trusted Supplier</div>
-</div>
+        .hero-text h1 {
+            color: white;
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
 
-<!-- FOOTER -->
-<div class="footer">
-    📍 Raji Akala No.1, Post Gulhariya Bazar,  
-    Medical College Road, Gorakhpur
-</div>
+        .hero-text h1 span {
+            color: var(--primary);
+        }
 
-<script>
-function calculateTotal() {
-    let price = document.getElementById("eggPrice").value;
-    let qty = document.getElementById("quantity").value;
-    let total = price * qty;
-    document.getElementById("total").innerText = total;
-}
+        .hero-text p {
+            color: #ccc;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
 
-function orderNow() {
-    let qty = document.getElementById("quantity").value;
-    let total = document.getElementById("total").innerText;
-    let address = document.getElementById("address").value;
+        .features-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
 
-    let message = `Order Details:%0AQuantity: ${qty} Eggs%0ATotal: ₹${total}%0AAddress: ${address}`;
-    window.open(`https://wa.me/916307479366?text=${message}`, '_blank');
-}
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.1);
+            padding: 10px 20px;
+            border-radius: 30px;
+            color: white;
+            font-size: 0.9rem;
+        }
 
-function sendLocation() {
-    window.open("https://www.google.com/maps/search/?api=1&query=Raji+Akala+No.1+Post+Gulhariya+Bazar+Medical+College+Road+Gorakhpur", "_blank");
-}
-</script>
+        .feature-item i {
+            color: var(--success);
+        }
 
-</body>
-  </html>
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .egg-showcase {
+            width: 350px;
+            height: 350px;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 150px;
+            color: white;
+            box-shadow: 
+                0 20px 60px rgba(255, 107, 53, 0.5),
+                inset 0 -20px 60px rgba(0,0,0,0.2);
+            animation: rotate 20s linear infinite;
+            position: relative;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .egg-showcase::after {
+            content: '🥚';
+            position: absolute;
+            font-size: 120px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Trust Badges */
+        .trust-section {
+            padding: 60px 5%;
+            background: white;
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .trust-card {
+            text-align: center;
+            padding: 30px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #fff 0%, var(--light) 100%);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .trust-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(255, 107, 53, 0.2);
+        }
+
+        .trust-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 35px;
+            color: white;
+        }
+
+        .trust-card h3 {
+            color: var(--dark);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .trust-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Products Section */
+        .products {
+            padding: 80px 5%;
+            background: var(--light);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(255, 107, 53, 0.25);
+        }
+
+        .product-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            position: relative;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--success);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .product-info {
+            padding: 25px;
+        }
+
+        .product-info h3 {
+            color: var(--dark);
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .product-info p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .price span {
+            font-size: 0.9rem;
+            color: #999;
+            font-weight: 400;
+        }
+
+        /* Order Form */
+        .order-section {
+            padding: 80px 5%;
+            background: linear-gradient(135deg, var(--dark) 0%, #16213e 100%);
+        }
+
+        .order-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+        }
+
+        .order-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 30px;
+            text-align: center;
+        }
+
+        .order-header h2 {
+            color: white;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .order-header p {
+            color: rgba(255,255,255,0.9);
+        }
+
+        .order-form {
+            padding: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--dark);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 5px 20px rgba(255, 107, 53, 0.2);
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .quantity-selector input {
+            flex: 1;
+            text-align: center;
+        }
+
+        .qty-btn {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .qty-btn:hover {
+            background: var(--dark);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.5);
+        }
+
+        /* Location Section */
+        .location {
+            padding: 80px 5%;
+            background: white;
+        }
+
+        .location-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .location-info h2 {
+            font-size: 2rem;
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+
+        .location-info p {
+            color: #666;
+            margin-bottom: 30px;
