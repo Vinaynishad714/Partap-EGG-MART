@@ -1,111 +1,213 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Partap Egg Mart</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<title>PARTAP EGG MART</title>
+
 <style>
-body{margin:0;font-family:'Poppins',sans-serif;background:#f5f5f5}
-.hero{
-  background:url('https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
-  height:300px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
-  color:#fff;
-  text-align:center;
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
 }
-.logo{
-  width:120px;
-  height:120px;
-  border-radius:50%;
-  background:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-  margin-bottom:10px;
+
+/* HERO SECTION */
+.hero {
+    position: relative;
+    height: 90vh;
+    background: url('https://images.unsplash.com/photo-1582727463364-5b6a89f3c1f5') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
 }
-.logo img{width:100%;height:100%;object-fit:cover}
-.hero h1{margin:5px 0;font-size:28px}
-.hero p{margin:0;font-size:16px}
-.section{
-  background:#fff;
-  margin:20px;
-  padding:20px;
-  border-radius:15px;
-  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
 }
-select,input{
-  width:100%;
-  padding:12px;
-  margin:10px 0;
-  border-radius:10px;
-  border:1px solid #ccc;
-  font-size:16px;
+
+.hero-content {
+    position: relative;
+    z-index: 2;
 }
-button{
-  width:100%;
-  padding:14px;
-  margin:10px 0;
-  border:none;
-  border-radius:10px;
-  background:#28a745;
-  color:#fff;
-  font-size:16px;
-  cursor:pointer;
+
+.logo-circle {
+    width: 120px;
+    height: 120px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
 }
-.total{font-weight:600;font-size:18px;margin:10px 0}
-iframe{width:100%;height:250px;border:0;border-radius:15px}
+
+.logo-circle img {
+    width: 70px;
+}
+
+/* COMPANY NAME BIG */
+.company-name {
+    font-size: 48px;
+    font-weight: 900;
+    margin-top: 15px;
+    text-shadow: 2px 2px 12px rgba(255,193,7,0.9);
+    letter-spacing: 3px;
+}
+
+.tagline {
+    font-size: 18px;
+    margin-top: 8px;
+    animation: floatText 2s ease-in-out infinite alternate;
+}
+
+@keyframes floatText {
+    from { opacity: 0.7; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(-5px); }
+}
+
+/* ORDER SECTION */
+.container {
+    background: white;
+    margin: -60px 15px 20px;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+h2 {
+    margin-top: 0;
+}
+
+select, input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.whatsapp-btn {
+    background: #28a745;
+    color: white;
+}
+
+.location-btn {
+    background: #34af23;
+    color: white;
+}
+
+/* FEATURES */
+.features {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.feature-box {
+    display: inline-block;
+    background: #28a745;
+    color: white;
+    padding: 10px 18px;
+    margin: 8px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* FOOTER LOCATION */
+.footer {
+    text-align: center;
+    padding: 20px;
+    background: #222;
+    color: white;
+    font-size: 14px;
+}
 </style>
 </head>
-<body><div class="hero">
-  <div class="logo">
-    <img src="https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?auto=format&fit=crop&w=500&q=60" alt="Hen">
-  </div>
-  <h1>PARTAP EGG MART</h1>
-  <p>Fresh • Natural • Farm Eggs 🥚</p>
-</div><div class="section">
-  <h2>Select Egg Option</h2>
-  <select id="eggOption" onchange="calculateTotal()">
-    <option value="7">1 Egg - ₹7</option>
-    <option value="14">2 Eggs - ₹14</option>
-    <option value="21">3 Eggs - ₹21</option>
-    <option value="42">6 Eggs - ₹42</option>
-    <option value="210">1 Tray (30 Eggs) - ₹210</option>
-    <option value="420">2 Tray (60 Eggs) - ₹420</option>
-  </select>  <input type="number" id="quantity" value="1" min="1" onchange="calculateTotal()">  <div class="total">Total: ₹<span id="totalPrice">7</span></div>  <input type="text" placeholder="Enter Your Full Delivery Address"><button onclick="orderWhatsApp()">Order Now on WhatsApp</button> <button onclick="sendLocation()">Send My Live Location</button>
 
-</div><div class="section">
-  <h2>Our Location</h2>
-  <p>Raji Akala No.1, Post Gulhariya Bazar, Medical College Road, Gorakhpur</p>
-  <iframe src="https://maps.google.com/maps?q=Medical%20College%20Road%20Gorakhpur&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
-</div><script>
-function calculateTotal(){
-  let price=document.getElementById('eggOption').value;
-  let qty=document.getElementById('quantity').value;
-  document.getElementById('totalPrice').innerText=price*qty;
+<body>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
+        <div class="logo-circle">
+            <img src="https://cdn-icons-png.flaticon.com/512/837/837560.png">
+        </div>
+        <h1 class="company-name">PARTAP EGG MART</h1>
+        <p class="tagline">Fresh • Natural • Farm Eggs 🥚</p>
+    </div>
+</section>
+
+<!-- ORDER SECTION -->
+<div class="container">
+    <h2>Select Egg Option</h2>
+
+    <select id="eggPrice">
+        <option value="7">1 Egg - ₹7</option>
+    </select>
+
+    <input type="number" id="quantity" placeholder="Enter Quantity" min="1" value="1" oninput="calculateTotal()">
+
+    <h3>Total: ₹<span id="total">7</span></h3>
+
+    <input type="text" id="address" placeholder="Enter Your Full Delivery Address">
+
+    <button class="whatsapp-btn" onclick="orderNow()">Order Now on WhatsApp</button>
+    <button class="location-btn" onclick="sendLocation()">Send My Live Location</button>
+</div>
+
+<!-- FEATURES -->
+<div class="features">
+    <div class="feature-box">🚚 Fast Delivery</div>
+    <div class="feature-box">🥚 Quality Product</div>
+    <div class="feature-box">🤝 Trusted Supplier</div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+    📍 Raji Akala No.1, Post Gulhariya Bazar,  
+    Medical College Road, Gorakhpur
+</div>
+
+<script>
+function calculateTotal() {
+    let price = document.getElementById("eggPrice").value;
+    let qty = document.getElementById("quantity").value;
+    let total = price * qty;
+    document.getElementById("total").innerText = total;
 }
 
-function orderWhatsApp(){
-  let price=document.getElementById('eggOption').value;
-  let qty=document.getElementById('quantity').value;
-  let total=price*qty;
-  let message=`Hello, I want to order eggs. Total amount ₹${total}`;
-  window.open(`https://wa.me/91XXXXXXXXXX?text=${encodeURIComponent(message)}`);
+function orderNow() {
+    let qty = document.getElementById("quantity").value;
+    let total = document.getElementById("total").innerText;
+    let address = document.getElementById("address").value;
+
+    let message = `Order Details:%0AQuantity: ${qty} Eggs%0ATotal: ₹${total}%0AAddress: ${address}`;
+    window.open(`https://wa.me/916307479366?text=${message}`, '_blank');
 }
 
-function sendLocation(){
-  if(navigator.geolocation){
-    navigator.geolocation.getCurrentPosition(function(position){
-      let lat=position.coords.latitude;
-      let lon=position.coords.longitude;
-      window.open(`https://www.google.com/maps?q=${lat},${lon}`);
-    });
-  }else{
-    alert("Geolocation is not supported by this browser.");
-  }
+function sendLocation() {
+    window.open("https://www.google.com/maps/search/?api=1&query=Raji+Akala+No.1+Post+Gulhariya+Bazar+Medical+College+Road+Gorakhpur", "_blank");
 }
-</script></body>
-                                                                                                                                                                                                                                     </html>
+</script>
+
+</body>
+  </html>
