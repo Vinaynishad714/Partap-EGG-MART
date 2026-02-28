@@ -1,188 +1,111 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html><html lang="en">
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pratap Egg Mart</title>
-
+<title>Partap Egg Mart</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
-body {
-  margin:0;
-  font-family: Arial, sans-serif;
-  background:#f5f5f5;
+body{margin:0;font-family:'Poppins',sans-serif;background:#f5f5f5}
+.hero{
+  background:url('https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+  height:300px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  color:#fff;
   text-align:center;
 }
-
-.hero {
-  background: url('https://images.unsplash.com/photo-1582727467849-7e36f7b2f2a1') no-repeat center center/cover;
-  padding:80px 20px;
-  color:white;
-}
-
-.logo {
+.logo{
   width:120px;
   height:120px;
-  background:white;
   border-radius:50%;
-  margin:auto;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   overflow:hidden;
+  margin-bottom:10px;
 }
-
-.logo img {
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.hero h1 {
-  margin-top:20px;
-  font-size:28px;
-}
-
-.section {
-  background:white;
+.logo img{width:100%;height:100%;object-fit:cover}
+.hero h1{margin:5px 0;font-size:28px}
+.hero p{margin:0;font-size:16px}
+.section{
+  background:#fff;
   margin:20px;
   padding:20px;
-  border-radius:10px;
-  box-shadow:0 0 10px rgba(0,0,0,0.1);
+  border-radius:15px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
 }
-
-input, select {
-  width:90%;
-  padding:10px;
+select,input{
+  width:100%;
+  padding:12px;
   margin:10px 0;
-  border-radius:5px;
+  border-radius:10px;
   border:1px solid #ccc;
   font-size:16px;
 }
-
-button {
-  width:90%;
-  padding:12px;
+button{
+  width:100%;
+  padding:14px;
   margin:10px 0;
   border:none;
-  border-radius:5px;
-  font-size:16px;
-  color:white;
+  border-radius:10px;
   background:#28a745;
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
 }
-
-h3 {
-  margin:10px 0;
-}
-
-.footer {
-  background:black;
-  color:white;
-  padding:15px;
-  margin-top:20px;
-}
+.total{font-weight:600;font-size:18px;margin:10px 0}
+iframe{width:100%;height:250px;border:0;border-radius:15px}
 </style>
 </head>
-
-<body>
-
-<div class="hero">
+<body><div class="hero">
   <div class="logo">
-    <img src="https://images.unsplash.com/photo-1548550023-2bdb3c5beed7">
+    <img src="https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?auto=format&fit=crop&w=500&q=60" alt="Hen">
   </div>
-  <h1>PRATAP EGG MART</h1>
-  <p>Fresh • Natural • Farm Eggs</p>
-</div>
+  <h1>PARTAP EGG MART</h1>
+  <p>Fresh • Natural • Farm Eggs 🥚</p>
+</div><div class="section">
+  <h2>Select Egg Option</h2>
+  <select id="eggOption" onchange="calculateTotal()">
+    <option value="7">1 Egg - ₹7</option>
+    <option value="14">2 Eggs - ₹14</option>
+    <option value="21">3 Eggs - ₹21</option>
+    <option value="42">6 Eggs - ₹42</option>
+    <option value="210">1 Tray (30 Eggs) - ₹210</option>
+    <option value="420">2 Tray (60 Eggs) - ₹420</option>
+  </select>  <input type="number" id="quantity" value="1" min="1" onchange="calculateTotal()">  <div class="total">Total: ₹<span id="totalPrice">7</span></div>  <input type="text" placeholder="Enter Your Full Delivery Address"><button onclick="orderWhatsApp()">Order Now on WhatsApp</button> <button onclick="sendLocation()">Send My Live Location</button>
 
-<div class="section">
-  <h2>Select Order Type</h2>
-
-  <select id="orderType" onchange="toggleInput(); calculateTotal();">
-    <option value="single">Individual Eggs</option>
-    <option value="tray1">1 Tray (30 Eggs)</option>
-    <option value="tray2">2 Tray (60 Eggs)</option>
-  </select>
-
-  <div id="singleEggBox">
-    <input type="number" id="eggQty" placeholder="Enter number of eggs" min="1" value="1" onchange="calculateTotal()">
-  </div>
-
-  <h3>Total: ₹<span id="total">7</span></h3>
-
-  <input type="text" id="address" placeholder="Enter Your Full Delivery Address">
-
-  <button onclick="orderWhatsApp()">Order Now on WhatsApp</button>
-</div>
-
-<div class="section">
-  <h3>Our Location</h3>
-  <iframe 
-    src="https://www.google.com/maps?q=Raji+Akala+No.1+Post+Gulhariya+Bazar+Medical+College+Road+Gorakhpur&output=embed"
-    width="100%" 
-    height="250" 
-    style="border:0;" 
-    allowfullscreen="" 
-    loading="lazy">
-  </iframe>
-</div>
-
-<div class="footer">
-Raji Akala No.1 Post Gulhariya Bazar Medical College Road Gorakhpur
-</div>
-
-<script>
-const pricePerEgg = 7;
-const trayPrice = 210;
-
-function toggleInput() {
-  const type = document.getElementById("orderType").value;
-  const singleBox = document.getElementById("singleEggBox");
-
-  if (type === "single") {
-    singleBox.style.display = "block";
-  } else {
-    singleBox.style.display = "none";
-  }
+</div><div class="section">
+  <h2>Our Location</h2>
+  <p>Raji Akala No.1, Post Gulhariya Bazar, Medical College Road, Gorakhpur</p>
+  <iframe src="https://maps.google.com/maps?q=Medical%20College%20Road%20Gorakhpur&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
+</div><script>
+function calculateTotal(){
+  let price=document.getElementById('eggOption').value;
+  let qty=document.getElementById('quantity').value;
+  document.getElementById('totalPrice').innerText=price*qty;
 }
 
-function calculateTotal() {
-  const type = document.getElementById("orderType").value;
-  let total = 0;
-
-  if (type === "single") {
-    const qty = document.getElementById("eggQty").value;
-    total = qty * pricePerEgg;
-  }
-
-  if (type === "tray1") {
-    total = trayPrice;
-  }
-
-  if (type === "tray2") {
-    total = trayPrice * 2;
-  }
-
-  document.getElementById("total").innerText = total;
+function orderWhatsApp(){
+  let price=document.getElementById('eggOption').value;
+  let qty=document.getElementById('quantity').value;
+  let total=price*qty;
+  let message=`Hello, I want to order eggs. Total amount ₹${total}`;
+  window.open(`https://wa.me/91XXXXXXXXXX?text=${encodeURIComponent(message)}`);
 }
 
-function orderWhatsApp() {
-  const type = document.getElementById("orderType").value;
-  const qty = document.getElementById("eggQty").value;
-  const address = document.getElementById("address").value;
-  const total = document.getElementById("total").innerText;
-
-  let orderText = "";
-
-  if(type === "single"){
-    orderText = qty + " eggs";
+function sendLocation(){
+  if(navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(function(position){
+      let lat=position.coords.latitude;
+      let lon=position.coords.longitude;
+      window.open(`https://www.google.com/maps?q=${lat},${lon}`);
+    });
+  }else{
+    alert("Geolocation is not supported by this browser.");
   }
-  if(type === "tray1"){
-    orderText = "1 Tray (30 eggs)";
-  }
-  if(type === "tray2"){
-    orderText = "2 Tray (60 eggs)";
-  }
-
-  const message = `Namaste, mujhe ${orderText} chahiye.\nTotal: ₹${total}\nAddress: ${address}`;
-
-  window.open(`https://wa.me/91YOURNUMBER?text=${encodeURIComponent(message)}`);
 }
-</script>
-
-</body>
-</html>
+</script></body>
+                                                                                                                                                                                                                                     </html>
