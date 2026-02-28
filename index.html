@@ -345,6 +345,50 @@ let message=`Hi PARTAP EGG MART,%0AQuantity: ${qty} Eggs%0ATotal: ₹${total}%0A
 window.open(`https://wa.me/916307479366?text=${message}`,'_blank');
 }
 </script>
+<!-- 3D Floating Circle Buttons -->
 
+<style>
+.floating-btn{
+position:fixed;
+right:20px;
+width:55px;
+height:55px;
+border-radius:50%;
+border:none;
+cursor:pointer;
+font-size:22px;
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+box-shadow:0 8px 20px rgba(0,0,0,0.4);
+transition:all 0.3s ease;
+z-index:999;
+}
+
+.floating-btn:hover{
+transform:translateY(-5px) scale(1.1);
+box-shadow:0 12px 25px rgba(0,0,0,0.6);
+}
+
+.dark-btn{
+bottom:20px;
+background:linear-gradient(145deg,#222,#000);
+}
+
+.upi-btn{
+bottom:90px;
+background:linear-gradient(145deg,#6a1b9a,#9c27b0);
+}
+</style>
+
+
+<button class="floating-btn dark-btn" onclick="toggleDarkMode()">
+🌙
+</button>
+
+<button class="floating-btn upi-btn" onclick="payUPI()">
+💳
+</button>
 </body>
 </html>
