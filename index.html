@@ -3,13 +3,63 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EGG MART | Fresh Eggs in Gorkhpur</title>
+<title>PARTAP EGG MART | Fresh Eggs</title>
 
 <style>
 body{
 margin:0;
 font-family:Arial, sans-serif;
 background:linear-gradient(to right,#fdfbfb,#ebedee);
+}
+
+/* HERO SECTION */
+.banner{
+position:relative;
+width:100%;
+height:260px;
+background:url('https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2') center/cover no-repeat;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+}
+
+.banner::before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.55);
+}
+
+.logo{
+position:relative;
+width:120px;
+height:120px;
+border-radius:50%;
+border:4px solid white;
+box-shadow:0 8px 20px rgba(0,0,0,0.4);
+background:white;
+object-fit:cover;
+z-index:2;
+}
+
+.tagline{
+position:relative;
+margin-top:15px;
+color:#fff;
+font-size:20px;
+font-weight:bold;
+z-index:2;
+animation:fadeSlide 3s infinite;
+}
+
+@keyframes fadeSlide{
+0%{opacity:0; transform:translateY(10px);}
+50%{opacity:1; transform:translateY(0);}
+100%{opacity:0; transform:translateY(-10px);}
 }
 
 header{
@@ -22,10 +72,11 @@ text-align:center;
 header h1{
 margin:0;
 color:#ffcc00;
+font-size:28px;
 }
 
 .container{
-max-width:1000px;
+max-width:900px;
 margin:auto;
 padding:20px;
 }
@@ -45,13 +96,13 @@ padding:12px;
 margin-top:10px;
 border-radius:8px;
 border:1px solid #ccc;
-font-size:15px;
+font-size:16px;
 }
 
 .total{
 font-size:20px;
 font-weight:bold;
-margin-top:10px;
+margin-top:15px;
 }
 
 button{
@@ -72,32 +123,10 @@ button:hover{
 transform:translateY(-3px);
 }
 
-.features{
-display:flex;
-justify-content:space-around;
-flex-wrap:wrap;
-text-align:center;
-margin-bottom:40px;
+button:active{
+transform:translateY(3px);
+box-shadow:0 3px 8px rgba(0,0,0,0.3);
 }
-
-.feature{
-background:white;
-padding:25px;
-margin:10px;
-border-radius:15px;
-width:250px;
-box-shadow:0 8px 20px rgba(0,0,0,0.15);
-font-size:20px;
-font-weight:bold;
-}
-
-.feature span{
-font-size:55px;
-display:block;
-margin-bottom:10px;
-}
-
-/* Contact Section */
 
 .contact-section{
 background:#111;
@@ -107,8 +136,8 @@ text-align:center;
 
 .contact-title{
 color:white;
-font-size:24px;
-margin-bottom:25px;
+font-size:22px;
+margin-bottom:20px;
 }
 
 .contact-icons{
@@ -131,18 +160,11 @@ box-shadow:0 10px 25px rgba(0,0,0,0.4);
 transition:0.2s;
 }
 
-/* 3D Look */
-.whatsapp{
-background:#25D366;
-}
+.whatsapp{ background:#25D366; }
+.call{ background:#007bff; }
 
-.call{
-background:#007bff;
-}
-
-/* Click Effect */
 .icon-btn:active{
-transform:translateY(5px);
+transform:translateY(6px);
 box-shadow:0 5px 10px rgba(0,0,0,0.4);
 }
 
@@ -151,15 +173,26 @@ background:#000;
 color:white;
 text-align:center;
 padding:15px;
+font-size:14px;
+}
+.address{
+margin-top:8px;
+font-size:13px;
+color:#ccc;
 }
 </style>
 </head>
 
 <body>
 
+<div class="banner">
+<img src="logo.png" class="logo" alt="PARTAP EGG MART Logo">
+<div class="tagline">Fresh • Natural • Farm Eggs 🥚</div>
+</div>
+
 <header>
-<h1>🥚 EGG MART</h1>
-<p>Fresh Eggs Delivered in Gorkhpur</p>
+<h1>🥚 PARTAP EGG MART</h1>
+<p>Fresh Eggs Available at Best Price</p>
 </header>
 
 <div class="container">
@@ -168,38 +201,27 @@ padding:15px;
 <h2>Select Egg Pack</h2>
 
 <select id="eggType" onchange="updateTotal()">
-<option value="12" data-price="90">12 Eggs - ₹90</option>
-<option value="30" data-price="200">30 Eggs - ₹200</option>
+<option value="90" data-label="12 Eggs">12 Eggs - ₹90</option>
+<option value="200" data-label="30 Eggs">30 Eggs - ₹200</option>
 </select>
 
-<select id="quantity" onchange="updateTotal()">
-<option value="1">Quantity: 1</option>
-<option value="2">Quantity: 2</option>
-<option value="3">Quantity: 3</option>
-</select>
+<input type="number" id="quantity" placeholder="Enter Quantity (1,2,3...)" min="1" value="1" oninput="updateTotal()">
 
 <div class="total" id="totalPrice">
 Total: ₹90
 </div>
 
-<input type="text" id="location" placeholder="Enter Your Full Delivery Address">
+<input type="text" id="address" placeholder="Enter Your Full Delivery Address">
 
 <button onclick="orderNow()">Order Now on WhatsApp</button>
-<button onclick="sendLiveLocation()">Send Live Location</button>
+<button onclick="sendLiveLocation()">Send My Live Location</button>
 
-</div>
-
-<div class="features">
-<div class="feature"><span>🚚</span>Fast Delivery</div>
-<div class="feature"><span>🥚</span>Genuine Product</div>
-<div class="feature"><span>⭐</span>Trusted Supplier</div>
 </div>
 
 </div>
 
-<!-- Stable Contact Section -->
 <div class="contact-section">
-<div class="contact-title">Contact Us Directly</div>
+<div class="contact-title">Contact PARTAP EGG MART</div>
 
 <div class="contact-icons">
 <div class="icon-btn whatsapp" onclick="openWhatsApp()">💬</div>
@@ -208,39 +230,47 @@ Total: ₹90
 </div>
 
 <footer>
-© 2026 EGG MART | Gorkhpur
+© 2026 PARTAP EGG MART | All Rights Reserved
+<div class="address">
+Raji Akala No.1, Post Gulhariya Bazar, Medical College Road, Gorkhpur
+</div>
 </footer>
 
 <script>
 var phoneNumber = "916307479366";
 
 function updateTotal(){
-var eggSelect = document.getElementById("eggType");
-var price = eggSelect.options[eggSelect.selectedIndex].getAttribute("data-price");
+var price = document.getElementById("eggType").value;
 var qty = document.getElementById("quantity").value;
+
+if(qty < 1 || qty == ""){
+qty = 1;
+document.getElementById("quantity").value = 1;
+}
+
 var total = price * qty;
 document.getElementById("totalPrice").innerHTML = "Total: ₹" + total;
 }
 
 function orderNow(){
-var eggSelect = document.getElementById("eggType");
-var eggText = eggSelect.options[eggSelect.selectedIndex].text;
-var price = eggSelect.options[eggSelect.selectedIndex].getAttribute("data-price");
+var select = document.getElementById("eggType");
+var label = select.options[select.selectedIndex].getAttribute("data-label");
+var price = select.value;
 var qty = document.getElementById("quantity").value;
-var location = document.getElementById("location").value;
+var address = document.getElementById("address").value;
 var total = price * qty;
 
-if(location.trim() === ""){
-alert("Please enter your delivery address");
+if(address.trim() === ""){
+alert("Please enter delivery address");
 return;
 }
 
-var message = "Hello, I want to order: " + eggText +
-". Quantity: " + qty +
-". Total Price: ₹" + total +
-". Delivery Address: " + location;
+var message = "Hello PARTAP EGG MART,%0A%0AI want to order:%0A" +
+label + "%0AQuantity: " + qty +
+"%0ATotal Price: ₹" + total +
+"%0AAddress: " + address;
 
-window.open("https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(message), "_blank");
+window.open("https://wa.me/" + phoneNumber + "?text=" + message, "_blank");
 }
 
 function sendLiveLocation(){
@@ -248,7 +278,6 @@ if(navigator.geolocation){
 navigator.geolocation.getCurrentPosition(function(position){
 var lat = position.coords.latitude;
 var lon = position.coords.longitude;
-
 var message = "My Live Location: https://www.google.com/maps?q=" + lat + "," + lon;
 window.open("https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(message), "_blank");
 });
@@ -267,4 +296,4 @@ window.location.href = "tel:" + phoneNumber;
 </script>
 
 </body>
-  </html>
+</html>
