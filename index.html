@@ -1,297 +1,186 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PARTAP EGG MART | Fresh Eggs</title>
+<title>Pratap Egg Mart</title>
 
 <style>
-body{
-margin:0;
-font-family:Arial, sans-serif;
-background:linear-gradient(to right,#fdfbfb,#ebedee);
+body {
+  margin:0;
+  font-family: Arial, sans-serif;
+  background:#f5f5f5;
+  text-align:center;
 }
 
-/* HERO SECTION */
-.banner{
-position:relative;
-width:100%;
-height:260px;
-background:url('https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2') center/cover no-repeat;
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
+.hero {
+  background: url('https://images.unsplash.com/photo-1582727467849-7e36f7b2f2a1') no-repeat center center/cover;
+  padding:80px 20px;
+  color:white;
 }
 
-.banner::before{
-content:"";
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.55);
+.logo {
+  width:120px;
+  height:120px;
+  background:white;
+  border-radius:50%;
+  margin:auto;
+  overflow:hidden;
 }
 
-.logo{
-position:relative;
-width:120px;
-height:120px;
-border-radius:50%;
-border:4px solid white;
-box-shadow:0 8px 20px rgba(0,0,0,0.4);
-background:white;
-object-fit:cover;
-z-index:2;
+.logo img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 
-.tagline{
-position:relative;
-margin-top:15px;
-color:#fff;
-font-size:20px;
-font-weight:bold;
-z-index:2;
-animation:fadeSlide 3s infinite;
+.hero h1 {
+  margin-top:20px;
+  font-size:28px;
 }
 
-@keyframes fadeSlide{
-0%{opacity:0; transform:translateY(10px);}
-50%{opacity:1; transform:translateY(0);}
-100%{opacity:0; transform:translateY(-10px);}
+.section {
+  background:white;
+  margin:20px;
+  padding:20px;
+  border-radius:10px;
+  box-shadow:0 0 10px rgba(0,0,0,0.1);
 }
 
-header{
-background:#111;
-color:white;
-padding:20px;
-text-align:center;
+input, select {
+  width:90%;
+  padding:10px;
+  margin:10px 0;
+  border-radius:5px;
+  border:1px solid #ccc;
+  font-size:16px;
 }
 
-header h1{
-margin:0;
-color:#ffcc00;
-font-size:28px;
+button {
+  width:90%;
+  padding:12px;
+  margin:10px 0;
+  border:none;
+  border-radius:5px;
+  font-size:16px;
+  color:white;
+  background:#28a745;
 }
 
-.container{
-max-width:900px;
-margin:auto;
-padding:20px;
+h3 {
+  margin:10px 0;
 }
 
-.product{
-background:white;
-padding:25px;
-border-radius:15px;
-box-shadow:0 8px 20px rgba(0,0,0,0.15);
-text-align:center;
-margin-bottom:40px;
-}
-
-select, input{
-width:100%;
-padding:12px;
-margin-top:10px;
-border-radius:8px;
-border:1px solid #ccc;
-font-size:16px;
-}
-
-.total{
-font-size:20px;
-font-weight:bold;
-margin-top:15px;
-}
-
-button{
-background:#28a745;
-color:white;
-border:none;
-padding:14px;
-margin-top:15px;
-width:100%;
-border-radius:8px;
-font-size:16px;
-cursor:pointer;
-box-shadow:0 5px 15px rgba(0,0,0,0.2);
-transition:0.2s;
-}
-
-button:hover{
-transform:translateY(-3px);
-}
-
-button:active{
-transform:translateY(3px);
-box-shadow:0 3px 8px rgba(0,0,0,0.3);
-}
-
-.contact-section{
-background:#111;
-padding:40px 20px;
-text-align:center;
-}
-
-.contact-title{
-color:white;
-font-size:22px;
-margin-bottom:20px;
-}
-
-.contact-icons{
-display:flex;
-justify-content:center;
-gap:40px;
-}
-
-.icon-btn{
-width:80px;
-height:80px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:35px;
-color:white;
-cursor:pointer;
-box-shadow:0 10px 25px rgba(0,0,0,0.4);
-transition:0.2s;
-}
-
-.whatsapp{ background:#25D366; }
-.call{ background:#007bff; }
-
-.icon-btn:active{
-transform:translateY(6px);
-box-shadow:0 5px 10px rgba(0,0,0,0.4);
-}
-
-footer{
-background:#000;
-color:white;
-text-align:center;
-padding:15px;
-font-size:14px;
-}
-.address{
-margin-top:8px;
-font-size:13px;
-color:#ccc;
+.footer {
+  background:black;
+  color:white;
+  padding:15px;
+  margin-top:20px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="banner">
-<img src="logo.png" class="logo" alt="PARTAP EGG MART Logo">
-<div class="tagline">Fresh • Natural • Farm Eggs 🥚</div>
+<div class="hero">
+  <div class="logo">
+    <img src="https://images.unsplash.com/photo-1548550023-2bdb3c5beed7">
+  </div>
+  <h1>PRATAP EGG MART</h1>
+  <p>Fresh • Natural • Farm Eggs</p>
 </div>
 
-<header>
-<h1>🥚 PARTAP EGG MART</h1>
-<p>Fresh Eggs Available at Best Price</p>
-</header>
+<div class="section">
+  <h2>Select Order Type</h2>
 
-<div class="container">
+  <select id="orderType" onchange="toggleInput(); calculateTotal();">
+    <option value="single">Individual Eggs</option>
+    <option value="tray1">1 Tray (30 Eggs)</option>
+    <option value="tray2">2 Tray (60 Eggs)</option>
+  </select>
 
-<div class="product">
-<h2>Select Egg Pack</h2>
+  <div id="singleEggBox">
+    <input type="number" id="eggQty" placeholder="Enter number of eggs" min="1" value="1" onchange="calculateTotal()">
+  </div>
 
-<select id="eggType" onchange="updateTotal()">
-<option value="90" data-label="12 Eggs">12 Eggs - ₹90</option>
-<option value="200" data-label="30 Eggs">30 Eggs - ₹200</option>
-</select>
+  <h3>Total: ₹<span id="total">7</span></h3>
 
-<input type="number" id="quantity" placeholder="Enter Quantity (1,2,3...)" min="1" value="1" oninput="updateTotal()">
+  <input type="text" id="address" placeholder="Enter Your Full Delivery Address">
 
-<div class="total" id="totalPrice">
-Total: ₹90
+  <button onclick="orderWhatsApp()">Order Now on WhatsApp</button>
 </div>
 
-<input type="text" id="address" placeholder="Enter Your Full Delivery Address">
-
-<button onclick="orderNow()">Order Now on WhatsApp</button>
-<button onclick="sendLiveLocation()">Send My Live Location</button>
-
+<div class="section">
+  <h3>Our Location</h3>
+  <iframe 
+    src="https://www.google.com/maps?q=Raji+Akala+No.1+Post+Gulhariya+Bazar+Medical+College+Road+Gorakhpur&output=embed"
+    width="100%" 
+    height="250" 
+    style="border:0;" 
+    allowfullscreen="" 
+    loading="lazy">
+  </iframe>
 </div>
 
+<div class="footer">
+Raji Akala No.1 Post Gulhariya Bazar Medical College Road Gorakhpur
 </div>
-
-<div class="contact-section">
-<div class="contact-title">Contact PARTAP EGG MART</div>
-
-<div class="contact-icons">
-<div class="icon-btn whatsapp" onclick="openWhatsApp()">💬</div>
-<div class="icon-btn call" onclick="makeCall()">📞</div>
-</div>
-</div>
-
-<footer>
-© 2026 PARTAP EGG MART | All Rights Reserved
-<div class="address">
-Raji Akala No.1, Post Gulhariya Bazar, Medical College Road, Gorkhpur
-</div>
-</footer>
 
 <script>
-var phoneNumber = "916307479366";
+const pricePerEgg = 7;
+const trayPrice = 210;
 
-function updateTotal(){
-var price = document.getElementById("eggType").value;
-var qty = document.getElementById("quantity").value;
+function toggleInput() {
+  const type = document.getElementById("orderType").value;
+  const singleBox = document.getElementById("singleEggBox");
 
-if(qty < 1 || qty == ""){
-qty = 1;
-document.getElementById("quantity").value = 1;
+  if (type === "single") {
+    singleBox.style.display = "block";
+  } else {
+    singleBox.style.display = "none";
+  }
 }
 
-var total = price * qty;
-document.getElementById("totalPrice").innerHTML = "Total: ₹" + total;
+function calculateTotal() {
+  const type = document.getElementById("orderType").value;
+  let total = 0;
+
+  if (type === "single") {
+    const qty = document.getElementById("eggQty").value;
+    total = qty * pricePerEgg;
+  }
+
+  if (type === "tray1") {
+    total = trayPrice;
+  }
+
+  if (type === "tray2") {
+    total = trayPrice * 2;
+  }
+
+  document.getElementById("total").innerText = total;
 }
 
-function orderNow(){
-var select = document.getElementById("eggType");
-var label = select.options[select.selectedIndex].getAttribute("data-label");
-var price = select.value;
-var qty = document.getElementById("quantity").value;
-var address = document.getElementById("address").value;
-var total = price * qty;
+function orderWhatsApp() {
+  const type = document.getElementById("orderType").value;
+  const qty = document.getElementById("eggQty").value;
+  const address = document.getElementById("address").value;
+  const total = document.getElementById("total").innerText;
 
-if(address.trim() === ""){
-alert("Please enter delivery address");
-return;
-}
+  let orderText = "";
 
-var message = "Hello PARTAP EGG MART,%0A%0AI want to order:%0A" +
-label + "%0AQuantity: " + qty +
-"%0ATotal Price: ₹" + total +
-"%0AAddress: " + address;
+  if(type === "single"){
+    orderText = qty + " eggs";
+  }
+  if(type === "tray1"){
+    orderText = "1 Tray (30 eggs)";
+  }
+  if(type === "tray2"){
+    orderText = "2 Tray (60 eggs)";
+  }
 
-window.open("https://wa.me/" + phoneNumber + "?text=" + message, "_blank");
-}
+  const message = `Namaste, mujhe ${orderText} chahiye.\nTotal: ₹${total}\nAddress: ${address}`;
 
-function sendLiveLocation(){
-if(navigator.geolocation){
-navigator.geolocation.getCurrentPosition(function(position){
-var lat = position.coords.latitude;
-var lon = position.coords.longitude;
-var message = "My Live Location: https://www.google.com/maps?q=" + lat + "," + lon;
-window.open("https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(message), "_blank");
-});
-}else{
-alert("Geolocation not supported");
-}
-}
-
-function openWhatsApp(){
-window.open("https://wa.me/" + phoneNumber, "_blank");
-}
-
-function makeCall(){
-window.location.href = "tel:" + phoneNumber;
+  window.open(`https://wa.me/916307479366?text=${encodeURIComponent(message)}`);
 }
 </script>
 
