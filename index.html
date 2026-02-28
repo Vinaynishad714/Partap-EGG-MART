@@ -8,8 +8,8 @@
 <style>
 body{
 margin:0;
-font-family:Arial, sans-serif;
-background:#f4f4f4;
+font-family: 'Segoe UI', sans-serif;
+background:linear-gradient(135deg,#fff8e1,#ffe082);
 }
 
 /* HERO */
@@ -28,7 +28,7 @@ color:white;
 position:absolute;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.6);
+background:rgba(0,0,0,0.65);
 }
 
 .hero-content{
@@ -45,6 +45,7 @@ display:flex;
 align-items:center;
 justify-content:center;
 margin:auto;
+box-shadow:0 0 25px rgba(255,193,7,0.8);
 }
 
 .logo-circle img{
@@ -52,15 +53,16 @@ width:70px;
 }
 
 .company-name{
-font-size:48px;
+font-size:52px;
 font-weight:900;
 margin-top:15px;
-text-shadow:2px 2px 12px rgba(255,193,7,0.9);
+color:#FFD700;
+text-shadow:0 0 20px rgba(255,215,0,0.9);
 letter-spacing:3px;
 }
 
 .tagline{
-font-size:18px;
+font-size:20px;
 margin-top:8px;
 animation:floatText 2s ease-in-out infinite alternate;
 }
@@ -72,20 +74,24 @@ to{opacity:1; transform:translateY(-5px);}
 
 /* ORDER */
 .container{
-background:white;
+background:rgba(255,255,255,0.9);
+backdrop-filter:blur(10px);
 margin:-60px 15px 20px;
-padding:20px;
-border-radius:15px;
-box-shadow:0 5px 20px rgba(0,0,0,0.1);
+padding:25px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
 }
 
-h2{margin-top:0;}
+h2{
+margin-top:0;
+color:#d4af37;
+}
 
 select,input,textarea{
 width:100%;
 padding:12px;
 margin:10px 0;
-border-radius:10px;
+border-radius:12px;
 border:1px solid #ccc;
 font-size:16px;
 }
@@ -100,16 +106,24 @@ gap:10px;
 padding:10px 15px;
 font-size:18px;
 border:none;
-background:#f7c548;
-border-radius:8px;
+background:linear-gradient(135deg,#FFD700,#FFA000);
+border-radius:10px;
 cursor:pointer;
+color:white;
+}
+
+.total-price{
+font-size:20px;
+font-weight:bold;
+color:#000;
+margin-top:5px;
 }
 
 button{
 width:100%;
 padding:14px;
 border:none;
-border-radius:10px;
+border-radius:12px;
 font-size:16px;
 font-weight:bold;
 margin-top:10px;
@@ -117,12 +131,12 @@ cursor:pointer;
 }
 
 .whatsapp-btn{
-background:#28a745;
+background:linear-gradient(135deg,#25D366,#128C7E);
 color:white;
 }
 
 .location-btn{
-background:#34af23;
+background:linear-gradient(135deg,#FF6B35,#F7C548);
 color:white;
 }
 
@@ -134,20 +148,29 @@ margin:20px 0;
 
 .feature-box{
 display:inline-block;
-background:#28a745;
+background:linear-gradient(135deg,#28a745,#218838);
 color:white;
-padding:10px 18px;
+padding:12px 20px;
 margin:8px;
-border-radius:25px;
+border-radius:30px;
 font-weight:bold;
 font-size:14px;
+box-shadow:0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* MAP */
+.map-section{
+margin:20px;
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
 }
 
 /* FOOTER */
 .footer{
 text-align:center;
 padding:20px;
-background:#222;
+background:#111;
 color:white;
 font-size:14px;
 }
@@ -156,7 +179,6 @@ font-size:14px;
 
 <body>
 
-<!-- HERO -->
 <section class="hero">
 <div class="overlay"></div>
 <div class="hero-content">
@@ -168,64 +190,77 @@ font-size:14px;
 </div>
 </section>
 
-<!-- ORDER SECTION -->
 <div class="container">
 <h2>Select Egg Quantity</h2>
 
 <div class="quantity-selector">
 <button class="qty-btn" onclick="decreaseQty()">-</button>
-<input type="number" id="quantity" value="1" min="1">
+<input type="number" id="quantity" value="1" min="1" oninput="calculateTotal()">
 <button class="qty-btn" onclick="increaseQty()">+</button>
+</div>
+
+<div class="total-price">
+Price per Egg: ₹7 <br>
+Total: ₹<span id="total">7</span>
 </div>
 
 <textarea id="address" placeholder="Enter Your Full Delivery Address"></textarea>
 
 <button class="whatsapp-btn" onclick="orderNow()">Order Now on WhatsApp</button>
-
-<button class="location-btn" onclick="openMap()">Open Live Location</button>
 </div>
 
-<!-- FEATURES -->
 <div class="features">
 <div class="feature-box">🚚 Fast Delivery</div>
 <div class="feature-box">🥚 Quality Product</div>
 <div class="feature-box">🤝 Trusted Supplier</div>
 </div>
 
-<!-- FOOTER -->
+<div class="map-section">
+<iframe 
+src="https://www.google.com/maps?q=Raji+Akala+No.1+Post+Gulhariya+Bazar+Medical+College+Road+Gorakhpur&output=embed"
+width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy">
+</iframe>
+</div>
+
 <div class="footer">
 📍 Raji Akala No.1, Post Gulhariya Bazar,
 Medical College Road, Gorakhpur
 </div>
 
 <script>
+const pricePerEgg = 7;
+
+function calculateTotal(){
+let qty=document.getElementById("quantity").value;
+document.getElementById("total").innerText = qty * pricePerEgg;
+}
+
 function increaseQty(){
 let qty=document.getElementById("quantity");
 qty.value=parseInt(qty.value)+1;
+calculateTotal();
 }
 
 function decreaseQty(){
 let qty=document.getElementById("quantity");
 if(qty.value>1){
 qty.value=parseInt(qty.value)-1;
+calculateTotal();
 }
 }
 
 function orderNow(){
 let qty=document.getElementById("quantity").value;
 let address=document.getElementById("address").value;
+let total=qty*pricePerEgg;
 
 if(address.trim()===""){
 alert("Please enter your delivery address");
 return;
 }
 
-let message=`Hi PARTAP EGG MART,%0AQuantity: ${qty} Eggs%0AAddress: ${address}`;
+let message=`Hi PARTAP EGG MART,%0AQuantity: ${qty} Eggs%0ATotal: ₹${total}%0AAddress: ${address}`;
 window.open(`https://wa.me/916307479366?text=${message}`,'_blank');
-}
-
-function openMap(){
-window.open("https://www.google.com/maps/search/?api=1&query=Raji+Akala+No.1+Post+Gulhariya+Bazar+Medical+College+Road+Gorakhpur","_blank");
 }
 </script>
 
