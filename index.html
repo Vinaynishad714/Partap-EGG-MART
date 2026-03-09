@@ -1,228 +1,183 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<title>EGG MART 🥚</title>
+<title>Partap Egg Mart</title>
 
 <style>
 
 body{
-font-family:Arial;
+font-family: Arial;
+background:#f2f2f2;
 margin:0;
-background:#fff8e6;
 text-align:center;
 }
 
-header{
+.header{
 background:#ffc107;
-padding:25px;
-}
-
-h1{
-margin:0;
-font-size:40px;
-}
-
-.location{
-margin-top:5px;
+padding:15px;
 font-size:18px;
-}
-
-.tagline{
-margin-top:10px;
-font-size:18px;
-color:#444;
 }
 
 .container{
-margin-top:40px;
-}
-
-.box{
 background:white;
-width:340px;
-margin:auto;
-padding:25px;
-border-radius:12px;
-box-shadow:0 0 15px rgba(0,0,0,0.2);
+max-width:400px;
+margin:30px auto;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
 }
 
 input,textarea{
 width:90%;
 padding:10px;
-margin-top:10px;
-font-size:16px;
-border-radius:6px;
+margin:10px;
 border:1px solid #ccc;
+border-radius:5px;
 }
 
-.buttons{
-margin-top:15px;
+.qty-box{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:15px;
+margin:10px;
 }
 
-.buttons button{
-padding:10px 15px;
-margin:5px;
-border:none;
-border-radius:6px;
+.qty-box button{
+padding:10px 20px;
+font-size:20px;
 background:#ff9800;
+border:none;
 color:white;
-font-size:15px;
-cursor:pointer;
+border-radius:6px;
 }
 
-.buttons button:hover{
-background:#f57c00;
+.qty-box span{
+font-size:22px;
+font-weight:bold;
 }
 
 .price{
-margin-top:15px;
-font-size:22px;
 color:green;
+font-size:22px;
+margin:15px;
 }
 
 .order{
-margin-top:20px;
+background:#28a745;
+color:white;
+border:none;
 padding:12px 25px;
 font-size:18px;
-background:#28a745;
-border:none;
-color:white;
 border-radius:6px;
-cursor:pointer;
 }
 
-footer{
-margin-top:40px;
+.footer{
 background:#333;
 color:white;
 padding:20px;
+margin-top:30px;
 }
 
 </style>
-
 </head>
 
 <body>
 
-<header>
-
-<h1>EGG MART 🥚🐣</h1>
-
-<div class="location">
-Sariya Bazar, Medical College Road, Gorakhpur
-</div>
-
-<div class="tagline">
+<div class="header">
 Best Quality Eggs | Trusted Supplier
 </div>
 
-</header>
-
-
 <div class="container">
-
-<div class="box">
 
 <h2>Order Eggs</h2>
 
 <p>Price: ₹5 per Egg</p>
 
-<input type="text" id="name" placeholder="Your Name">
+<input type="text" placeholder="Your Name">
 
-<input type="number" id="mobile" placeholder="Mobile Number">
+<input type="number" placeholder="Mobile Number">
 
-<textarea id="address" placeholder="Delivery Address"></textarea>
+<textarea placeholder="Delivery Address"></textarea>
 
-<div class="buttons">
+<h3>Egg Quantity</h3>
 
-<button onclick="setQty(1)">1 Egg</button>
-
-<button onclick="setQty(12)">12 Eggs</button>
-
-<button onclick="setQty(30)">1 Tray </button>
-
+<div class="qty-box">
+<button onclick="changeEgg(-1)">-</button>
+<span id="eggCount">0</span>
+<button onclick="changeEgg(1)">+</button>
 </div>
 
-<input type="number" id="qty" placeholder="Or Enter Custom Quantity">
+<h3>Tray Quantity</h3>
+
+<div class="qty-box">
+<button onclick="changeTray(-1)">-</button>
+<span id="trayCount">0</span>
+<button onclick="changeTray(1)">+</button>
+</div>
 
 <div class="price" id="total">
 Total Price: ₹0
 </div>
 
-<button class="order" onclick="orderEggs()">Place Order</button>
+<button class="order">Place Order</button>
 
 </div>
 
-</div>
+<div class="footer">
+Order on this number <br><br>
 
-
-<footer>
-
-📞 Order on this number
-
-<br><br>
-
-6307479366
-<br>
-8400879638
-
-<br><br>
+6307479366 <br>
+8400879638 <br><br>
 
 EGG MART – Best Quality & Trusted Supplier 🥚
-
-</footer>
-
+</div>
 
 <script>
 
-let pricePerEgg = 7;
+let eggPrice = 5;
+let eggs = 0;
+let trays = 0;
 
-function setQty(q){
+function changeEgg(val){
 
-document.getElementById("qty").value = q;
+eggs += val;
 
-calculate();
-
+if(eggs < 0){
+eggs = 0;
 }
 
-document.getElementById("qty").addEventListener("input", calculate);
+document.getElementById("eggCount").innerText = eggs;
 
-function calculate(){
-
-let qty = document.getElementById("qty").value;
-
-let total = qty * pricePerEgg;
-
-document.getElementById("total").innerHTML = "Total Price: ₹" + total;
-
+updatePrice();
 }
 
-function orderEggs(){
+function changeTray(val){
 
-let name = document.getElementById("name").value;
+trays += val;
 
-let mobile = document.getElementById("mobile").value;
+if(trays < 0){
+trays = 0;
+}
 
-let address = document.getElementById("address").value;
+document.getElementById("trayCount").innerText = trays;
 
-let qty = document.getElementById("qty").value;
+updatePrice();
+}
 
-let total = qty * pricePerEgg;
+function updatePrice(){
 
-let message =
-"Egg Order%0A%0A"+
-"Name: "+name+"%0A"+
-"Mobile: "+mobile+"%0A"+
-"Address: "+address+"%0A"+
-"Egg Quantity: "+qty+"%0A"+
-"Total Price: ₹"+total;
+let trayEggs = trays * 30;
 
-let phone = "916307479366";
+let totalEggs = eggs + trayEggs;
 
-window.open("https://wa.me/"+phone+"?text="+message);
+let total = totalEggs * eggPrice;
+
+document.getElementById("total").innerText =
+"Total Price: ₹" + total;
 
 }
 
