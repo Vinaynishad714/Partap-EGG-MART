@@ -3,55 +3,62 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Partap Egg Mart</title>
+<title>PARTAB EGG MART 🥚🐣</title>
 
 <style>
-
 body{
-font-family: Arial;
-background:#f2f2f2;
+font-family: Arial, sans-serif;
 margin:0;
+background:#f4f4f4;
 text-align:center;
 }
 
 .header{
-background:#ffc107;
-padding:15px;
-font-size:18px;
+background:#ffb300;
+padding:20px;
+}
+
+.header h1{
+margin:0;
+font-size:30px;
+}
+
+.tagline{
+font-size:15px;
 }
 
 .container{
 background:white;
-max-width:400px;
+max-width:420px;
 margin:30px auto;
-padding:20px;
-border-radius:10px;
-box-shadow:0 0 10px rgba(0,0,0,0.1);
+padding:25px;
+border-radius:12px;
+box-shadow:0 6px 15px rgba(0,0,0,0.1);
 }
 
 input,textarea{
-width:90%;
-padding:10px;
-margin:10px;
+width:92%;
+padding:12px;
+margin:8px 0;
 border:1px solid #ccc;
-border-radius:5px;
+border-radius:6px;
+font-size:15px;
 }
 
 .qty-box{
 display:flex;
 justify-content:center;
 align-items:center;
-gap:15px;
+gap:20px;
 margin:10px;
 }
 
 .qty-box button{
-padding:10px 20px;
-font-size:20px;
 background:#ff9800;
 border:none;
 color:white;
+font-size:20px;
+padding:10px 18px;
 border-radius:6px;
 }
 
@@ -60,48 +67,51 @@ font-size:22px;
 font-weight:bold;
 }
 
-.price{
+.total{
+font-size:24px;
 color:green;
-font-size:22px;
-margin:15px;
+margin:15px 0;
+font-weight:bold;
 }
 
-.order{
+.order-btn{
 background:#28a745;
 color:white;
 border:none;
-padding:12px 25px;
+padding:14px 30px;
 font-size:18px;
-border-radius:6px;
+border-radius:8px;
 }
 
 .footer{
 background:#333;
 color:white;
-padding:20px;
+padding:25px;
 margin-top:30px;
 }
-
 </style>
 </head>
 
 <body>
 
 <div class="header">
-Best Quality Eggs | Trusted Supplier
+<h1>PARTAB EGG MART 🥚🐣</h1>
+<div class="tagline">
+Fresh • Hygienic • Farm Quality Eggs 🍳
+</div>
 </div>
 
 <div class="container">
 
-<h2>Order Eggs</h2>
+<h2>Order Fresh Eggs</h2>
 
 <p>Price: ₹5 per Egg</p>
 
-<input type="text" placeholder="Your Name">
+<input type="text" id="name" placeholder="Your Name">
 
-<input type="number" placeholder="Mobile Number">
+<input type="number" id="phone" placeholder="Mobile Number">
 
-<textarea placeholder="Delivery Address"></textarea>
+<textarea id="address" placeholder="Delivery Address"></textarea>
 
 <h3>Egg Quantity</h3>
 
@@ -111,7 +121,7 @@ Best Quality Eggs | Trusted Supplier
 <button onclick="changeEgg(1)">+</button>
 </div>
 
-<h3>Tray Quantity</h3>
+<h3>Tray Quantity (30 Eggs)</h3>
 
 <div class="qty-box">
 <button onclick="changeTray(-1)">-</button>
@@ -119,21 +129,19 @@ Best Quality Eggs | Trusted Supplier
 <button onclick="changeTray(1)">+</button>
 </div>
 
-<div class="price" id="total">
+<div class="total" id="total">
 Total Price: ₹0
 </div>
 
-<button class="order">Place Order</button>
+<button class="order-btn" onclick="sendOrder()">Place Order</button>
 
 </div>
 
 <div class="footer">
-Order on this number <br><br>
-
+📞 Order on this number <br><br>
 6307479366 <br>
 8400879638 <br><br>
-
-EGG MART – Best Quality & Trusted Supplier 🥚
+PARTAB EGG MART – Best Quality Eggs 🥚🍳
 </div>
 
 <script>
@@ -143,45 +151,51 @@ let eggs = 0;
 let trays = 0;
 
 function changeEgg(val){
-
 eggs += val;
-
-if(eggs < 0){
-eggs = 0;
-}
-
+if(eggs < 0){ eggs = 0; }
 document.getElementById("eggCount").innerText = eggs;
-
 updatePrice();
 }
 
 function changeTray(val){
-
 trays += val;
-
-if(trays < 0){
-trays = 0;
-}
-
+if(trays < 0){ trays = 0; }
 document.getElementById("trayCount").innerText = trays;
-
 updatePrice();
 }
 
 function updatePrice(){
+let trayEggs = trays * 30;
+let totalEggs = eggs + trayEggs;
+let total = totalEggs * eggPrice;
+document.getElementById("total").innerText = "Total Price: ₹" + total;
+}
+
+function sendOrder(){
+
+let name = document.getElementById("name").value;
+let phone = document.getElementById("phone").value;
+let address = document.getElementById("address").value;
 
 let trayEggs = trays * 30;
-
 let totalEggs = eggs + trayEggs;
-
 let total = totalEggs * eggPrice;
 
-document.getElementById("total").innerText =
-"Total Price: ₹" + total;
+let message =
+"🥚 PARTAB EGG MART ORDER 🐣\n\n"+
+"Name: "+name+"\n"+
+"Phone: "+phone+"\n"+
+"Address: "+address+"\n\n"+
+"Eggs: "+totalEggs+"\n"+
+"Total Price: ₹"+total;
+
+let url="https://wa.me/916307479366?text="+encodeURIComponent(message);
+
+window.open(url);
 
 }
 
 </script>
 
 </body>
-</html>
+  </html>
