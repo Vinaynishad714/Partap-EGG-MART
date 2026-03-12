@@ -395,4 +395,232 @@
       <p class="text-amber-300">© 2024 PARTAP EGG MART. Made with ❤️ in India</p>
      </div>
     </div>
-   </footer><!-- Floating WhatsApp Button --> <a id="whatsapp-float" 
+  </div>
+  <script>
+    // Default configuration
+    const defaultConfig = {
+      shop_name: 'PARTAP EGG MART 🥚🐣',
+      tagline: 'Fresh Eggs Delivered Fast',
+      egg_price: '7',
+      tray_price: '210',
+      phone1: '6307479366',
+      phone2: '8400879638',
+      address: 'SARAYA BAZAR PIPRAICH ROAD, VIMAL VIDYA MANDIR SCHOOL KE PASS',
+      background_color: '#fffbeb',
+      surface_color: '#ffffff',
+      text_color: '#78350f',
+      primary_action_color: '#f59e0b',
+      secondary_action_color: '#22c55e'
+    };
+
+    // State variables
+    let eggQuantity = 0;
+    let trayQuantity = 0;
+    let eggPrice = 7;
+    let trayPrice = 210;
+    let phone1 = '6307479366';
+
+    // Quantity functions
+    function setEggQuantity(qty) {
+      eggQuantity = qty;
+      updateDisplay();
+    }
+
+    function changeEggQuantity(delta) {
+      eggQuantity = Math.max(0, eggQuantity + delta);
+      updateDisplay();
+    }
+
+    function setTrayQuantity(qty) {
+      trayQuantity = qty;
+      updateDisplay();
+    }
+
+    function changeTrayQuantity(delta) {
+      trayQuantity = Math.max(0, trayQuantity + delta);
+      updateDisplay();
+    }
+
+    function updateDisplay() {
+      const eggSubtotal = eggQuantity * eggPrice;
+      const traySubtotal = trayQuantity * trayPrice;
+      const total = eggSubtotal + traySubtotal;
+
+      document.getElementById('egg-quantity').textContent = eggQuantity;
+      document.getElementById('tray-quantity').textContent = trayQuantity;
+      document.getElementById('egg-subtotal').textContent = `₹${eggSubtotal}`;
+      document.getElementById('tray-subtotal').textContent = `₹${traySubtotal}`;
+      document.getElementById('total-price').textContent = `₹${total}`;
+      document.getElementById('total-items').textContent = `${eggQuantity} eggs + ${trayQuantity} trays (${trayQuantity * 30} eggs)`;
+      
+      // Update form summary
+      document.getElementById('form-eggs').textContent = `${eggQuantity} eggs (₹${eggSubtotal})`;
+      document.getElementById('form-trays').textContent = `${trayQuantity} trays (₹${traySubtotal})`;
+      document.getElementById('form-total').textContent = `₹${total}`;
+    }
+
+    // Form submission
+    document.getElementById('order-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const address = document.getElementById('address').value;
+      const mobile = document.getElementById('mobile').value;
+      const total = (eggQuantity * eggPrice) + (trayQuantity * trayPrice);
+
+      if (eggQuantity === 0 && trayQuantity === 0) {
+        // Show inline error instead of alert
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'bg-red-100 border-2 border-red-400 text-red-700 px-4 py-3 rounded-xl mb-4';
+        errorDiv.innerHTML = '⚠️ Please select at least 1 egg or 1 tray to order!';
+        errorDiv.id = 'order-error';
+        
+        const existingError = document.getElementById('order-error');
+        if (existingError) existingError.remove();
+        
+        this.insertBefore(errorDiv, this.firstChild);
+        setTimeout(() => errorDiv.remove(), 3000);
+        return;
+      }
+
+      // Create WhatsApp message
+      const message = `Namaste Pratap ji,
+Mujhe eggs order karna hai.
+
+👤 Name: ${name}
+📍 Address: ${address}
+📱 Mobile: ${mobile}
+🥚 Egg Quantity: ${eggQuantity} eggs
+📦 Tray Quantity: ${trayQuantity} trays
+💰 Total Price: ₹${total}
+
+Thank You 🙏`;
+
+      // Encode message for URL
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappURL = `https://wa.me/91${phone1}?text=${encodedMessage}`;
+
+      // Open WhatsApp
+      window.open(whatsappURL, '_blank');
+
+      // Show success message
+      document.getElementById('success-message').classList.remove('hidden');
+
+      // Reset form after delay
+      setTimeout(() => {
+        this.reset();
+        eggQuantity = 0;
+        trayQuantity = 0;
+        updateDisplay();
+        document.getElementById('success-message').classList.add('hidden');
+      }, 5000);
+    });
+
+    // Element SDK Integration
+    async function onConfigChange(config) {
+      const shopName = config.shop_name || defaultConfig.shop_name;
+      const tagline = config.tagline || defaultConfig.tagline;
+      eggPrice = parseInt(config.egg_price) || parseInt(defaultConfig.egg_price);
+      trayPrice = parseInt(config.tray_price) || parseInt(defaultConfig.tray_price);
+      phone1 = config.phone1 || defaultConfig.phone1;
+      const phone2Val = config.phone2 || defaultConfig.phone2;
+      const addressVal = config.address || defaultConfig.address;
+      
+      const bgColor = config.background_color || defaultConfig.background_color;
+      const surfaceColor = config.surface_color || defaultConfig.surface_color;
+      const textColor = config.text_color || defaultConfig.text_color;
+      const primaryColor = config.primary_action_color || defaultConfig.primary_action_color;
+      const secondaryColor = config.secondary_action_color || defaultConfig.secondary_action_color;
+
+      // Update shop name
+      document.getElementById('nav-shop-name').textContent = shopName.replace(' 🥚🐣', '');
+      document.getElementById('hero-title').textContent = shopName;
+      document.getElementById('footer-shop-name').textContent = shopName.replace(' 🥚🐣', '');
+      
+      // Update tagline
+      document.getElementById('hero-tagline').textContent = tagline;
+      
+      // Update prices display
+      document.getElementById('egg-price-display').textContent = `₹${eggPrice} per egg`;
+      document.getElementById('tray-price-display').textContent = `₹${trayPrice} per tray (30 eggs)`;
+      
+      // Update phone numbers
+      document.getElementById('phone1-display').textContent = phone1;
+      document.getElementById('phone2-display').textContent = phone2Val;
+      document.getElementById('phone1-link').href = `tel:${phone1}`;
+      document.getElementById('phone2-link').href = `tel:${phone2Val}`;
+      document.getElementById('footer-phone1').textContent = phone1;
+      document.getElementById('footer-phone2').textContent = phone2Val;
+      
+      // Update WhatsApp links
+      document.getElementById('whatsapp-hero').href = `https://wa.me/91${phone1}?text=Namaste%20Pratap%20ji%2C%20I%20want%20to%20order%20eggs`;
+      document.getElementById('whatsapp-float').href = `https://wa.me/91${phone1}?text=Namaste%20Pratap%20ji%2C%20I%20want%20to%20inquire%20about%20eggs`;
+      
+      // Update address
+      document.getElementById('contact-address').innerHTML = addressVal.replace(/,/g, '<br>');
+      document.getElementById('footer-address').textContent = '📍 ' + addressVal.split(',')[0];
+      
+      // Apply colors
+      document.body.style.backgroundColor = bgColor;
+      
+      // Update display with new prices
+      updateDisplay();
+    }
+
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [
+          {
+            get: () => config.background_color || defaultConfig.background_color,
+            set: (value) => { config.background_color = value; window.elementSdk.setConfig({ background_color: value }); }
+          },
+          {
+            get: () => config.surface_color || defaultConfig.surface_color,
+            set: (value) => { config.surface_color = value; window.elementSdk.setConfig({ surface_color: value }); }
+          },
+          {
+            get: () => config.text_color || defaultConfig.text_color,
+            set: (value) => { config.text_color = value; window.elementSdk.setConfig({ text_color: value }); }
+          },
+          {
+            get: () => config.primary_action_color || defaultConfig.primary_action_color,
+            set: (value) => { config.primary_action_color = value; window.elementSdk.setConfig({ primary_action_color: value }); }
+          },
+          {
+            get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
+            set: (value) => { config.secondary_action_color = value; window.elementSdk.setConfig({ secondary_action_color: value }); }
+          }
+        ],
+        borderables: [],
+        fontEditable: undefined,
+        fontSizeable: undefined
+      };
+    }
+
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ['shop_name', config.shop_name || defaultConfig.shop_name],
+        ['tagline', config.tagline || defaultConfig.tagline],
+        ['egg_price', config.egg_price || defaultConfig.egg_price],
+        ['tray_price', config.tray_price || defaultConfig.tray_price],
+        ['phone1', config.phone1 || defaultConfig.phone1],
+        ['phone2', config.phone2 || defaultConfig.phone2],
+        ['address', config.address || defaultConfig.address]
+      ]);
+    }
+
+    // Initialize SDK
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+
+    // Initial display update
+    updateDisplay();
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9db01e49549a8fbf',t:'MTc3MzI5MDQwMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
