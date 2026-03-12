@@ -1,201 +1,308 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PARTAB EGG MART 🥚🐣</title>
-
-<style>
-body{
-font-family: Arial, sans-serif;
-margin:0;
-background:#f4f4f4;
-text-align:center;
-}
-
-.header{
-background:#ffb300;
-padding:20px;
-}
-
-.header h1{
-margin:0;
-font-size:30px;
-}
-
-.tagline{
-font-size:15px;
-}
-
-.container{
-background:white;
-max-width:420px;
-margin:30px auto;
-padding:25px;
-border-radius:12px;
-box-shadow:0 6px 15px rgba(0,0,0,0.1);
-}
-
-input,textarea{
-width:92%;
-padding:12px;
-margin:8px 0;
-border:1px solid #ccc;
-border-radius:6px;
-font-size:15px;
-}
-
-.qty-box{
-display:flex;
-justify-content:center;
-align-items:center;
-gap:20px;
-margin:10px;
-}
-
-.qty-box button{
-background:#ff9800;
-border:none;
-color:white;
-font-size:20px;
-padding:10px 18px;
-border-radius:6px;
-}
-
-.qty-box span{
-font-size:22px;
-font-weight:bold;
-}
-
-.total{
-font-size:24px;
-color:green;
-margin:15px 0;
-font-weight:bold;
-}
-
-.order-btn{
-background:#28a745;
-color:white;
-border:none;
-padding:14px 30px;
-font-size:18px;
-border-radius:8px;
-}
-
-.footer{
-background:#333;
-color:white;
-padding:25px;
-margin-top:30px;
-}
-</style>
-</head>
-
-<body>
-
-<div class="header">
-<h1>PARTAB EGG MART 🥚🐣</h1>
-<div class="tagline">
-Fresh • Hygienic • Farm Quality Eggs 🍳
-</div>
-</div>
-
-<div class="container">
-
-<h2>Order Fresh Eggs</h2>
-
-<p>Price: ₹5 per Egg</p>
-
-<input type="text" id="name" placeholder="Your Name">
-
-<input type="number" id="phone" placeholder="Mobile Number">
-
-<textarea id="address" placeholder="Delivery Address"></textarea>
-
-<h3>Egg Quantity</h3>
-
-<div class="qty-box">
-<button onclick="changeEgg(-1)">-</button>
-<span id="eggCount">0</span>
-<button onclick="changeEgg(1)">+</button>
-</div>
-
-<h3>Tray Quantity (30 Eggs)</h3>
-
-<div class="qty-box">
-<button onclick="changeTray(-1)">-</button>
-<span id="trayCount">0</span>
-<button onclick="changeTray(1)">+</button>
-</div>
-
-<div class="total" id="total">
-Total Price: ₹0
-</div>
-
-<button class="order-btn" onclick="sendOrder()">Place Order</button>
-
-</div>
-
-<div class="footer">
-📞 Order on this number <br><br>
-6307479366 <br>
-8400879638 <br><br>
-PARTAB EGG MART – Best Quality Eggs 🥚🍳
-</div>
-
-<script>
-
-let eggPrice = 5;
-let eggs = 0;
-let trays = 0;
-
-function changeEgg(val){
-eggs += val;
-if(eggs < 0){ eggs = 0; }
-document.getElementById("eggCount").innerText = eggs;
-updatePrice();
-}
-
-function changeTray(val){
-trays += val;
-if(trays < 0){ trays = 0; }
-document.getElementById("trayCount").innerText = trays;
-updatePrice();
-}
-
-function updatePrice(){
-let trayEggs = trays * 30;
-let totalEggs = eggs + trayEggs;
-let total = totalEggs * eggPrice;
-document.getElementById("total").innerText = "Total Price: ₹" + total;
-}
-
-function sendOrder(){
-
-let name = document.getElementById("name").value;
-let phone = document.getElementById("phone").value;
-let address = document.getElementById("address").value;
-
-let trayEggs = trays * 30;
-let totalEggs = eggs + trayEggs;
-let total = totalEggs * eggPrice;
-
-let message =
-"🥚 PARTAB EGG MART ORDER 🐣\n\n"+
-"Name: "+name+"\n"+
-"Phone: "+phone+"\n"+
-"Address: "+address+"\n\n"+
-"Eggs: "+totalEggs+"\n"+
-"Total Price: ₹"+total;
-
-let url="https://wa.me/916307479366?text="+encodeURIComponent(message);
-
-window.open(url);
-
-}
-
-</script>
-
-</body>
-  </html>
+<!doctype html>
+<html lang="hi" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PARTAP EGG MART 🥚🐣</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+    * { font-family: 'Poppins', sans-serif; }
+    
+    .egg-3d {
+      background: linear-gradient(145deg, #fff9e6, #ffeaa7);
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      box-shadow: 
+        inset -10px -10px 20px rgba(255,255,255,0.8),
+        inset 10px 10px 20px rgba(0,0,0,0.05),
+        0 20px 40px rgba(0,0,0,0.15),
+        0 5px 15px rgba(0,0,0,0.1);
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    .egg-small {
+      background: linear-gradient(145deg, #fff9e6, #ffeaa7);
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      box-shadow: 
+        inset -3px -3px 8px rgba(255,255,255,0.9),
+        inset 3px 3px 8px rgba(0,0,0,0.05),
+        0 8px 16px rgba(0,0,0,0.1);
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(-5deg); }
+      50% { transform: translateY(-15px) rotate(5deg); }
+    }
+    
+    @keyframes bounce-subtle {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    
+    .card-3d {
+      background: linear-gradient(145deg, #ffffff, #f5f5f5);
+      box-shadow: 
+        8px 8px 20px rgba(0,0,0,0.1),
+        -8px -8px 20px rgba(255,255,255,0.9),
+        inset 1px 1px 2px rgba(255,255,255,0.5);
+    }
+    
+    .btn-3d {
+      box-shadow: 
+        0 4px 0 #c9a000,
+        0 6px 10px rgba(0,0,0,0.2);
+      transition: all 0.1s ease;
+    }
+    
+    .btn-3d:active {
+      box-shadow: 
+        0 2px 0 #c9a000,
+        0 3px 5px rgba(0,0,0,0.2);
+      transform: translateY(2px);
+    }
+    
+    .btn-green-3d {
+      box-shadow: 
+        0 4px 0 #15803d,
+        0 6px 10px rgba(0,0,0,0.2);
+    }
+    
+    .btn-green-3d:active {
+      box-shadow: 
+        0 2px 0 #15803d,
+        0 3px 5px rgba(0,0,0,0.2);
+      transform: translateY(2px);
+    }
+    
+    .trust-badge {
+      background: linear-gradient(135deg, #fef9c3, #fef08a);
+      box-shadow: 0 4px 15px rgba(234, 179, 8, 0.3);
+    }
+    
+    .whatsapp-float {
+      animation: pulse 2s ease-in-out infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
+      50% { transform: scale(1.1); box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6); }
+    }
+    
+    .quantity-btn {
+      background: linear-gradient(145deg, #fef08a, #eab308);
+      box-shadow: 
+        inset 2px 2px 4px rgba(255,255,255,0.5),
+        inset -2px -2px 4px rgba(0,0,0,0.1),
+        0 3px 6px rgba(0,0,0,0.15);
+    }
+    
+    .quantity-btn:active {
+      box-shadow: 
+        inset -2px -2px 4px rgba(255,255,255,0.5),
+        inset 2px 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .hero-bg {
+      background: 
+        radial-gradient(ellipse at 20% 30%, rgba(254, 240, 138, 0.6) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 70%, rgba(253, 224, 71, 0.4) 0%, transparent 50%),
+        linear-gradient(180deg, #fffbeb 0%, #fef3c7 100%);
+    }
+    
+    .section-divider {
+      background: linear-gradient(90deg, transparent, #eab308, transparent);
+    }
+    
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #eab308;
+      box-shadow: 0 0 0 3px rgba(234, 179, 8, 0.2);
+    }
+    
+    .scroll-smooth {
+      scroll-behavior: smooth;
+    }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full bg-amber-50 scroll-smooth overflow-auto">
+  <div class="min-h-full"><!-- Navigation -->
+   <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-md">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+     <div class="flex items-center gap-2">
+      <div class="egg-small w-8 h-10"></div><span id="nav-shop-name" class="font-bold text-amber-800 text-lg">PARTAP EGG MART</span>
+     </div>
+     <div class="hidden md:flex items-center gap-6 text-sm font-medium"><a href="#home" class="text-amber-700 hover:text-amber-900 transition">Home</a> <a href="#order" class="text-amber-700 hover:text-amber-900 transition">Order</a> <a href="#contact" class="text-amber-700 hover:text-amber-900 transition">Contact</a> <a href="#location" class="text-amber-700 hover:text-amber-900 transition">Location</a>
+     </div><a href="#order" class="bg-amber-500 text-white px-4 py-2 rounded-full text-sm font-semibold btn-3d hover:bg-amber-400 transition"> Order Now </a>
+    </div>
+   </nav><!-- Hero Section -->
+   <section id="home" class="hero-bg pt-24 pb-16 px-4 relative overflow-hidden"><!-- Decorative eggs -->
+    <div class="absolute top-20 left-5 w-12 h-16 egg-small opacity-40 rotate-12"></div>
+    <div class="absolute top-40 right-10 w-8 h-11 egg-small opacity-30 -rotate-12"></div>
+    <div class="absolute bottom-20 left-20 w-6 h-8 egg-small opacity-25 rotate-45"></div>
+    <div class="max-w-6xl mx-auto">
+     <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-16"><!-- Text Content -->
+      <div class="flex-1 text-center lg:text-left">
+       <div class="inline-block bg-amber-200/60 text-amber-800 px-4 py-1 rounded-full text-sm font-medium mb-4">
+        🥇 #1 Trusted Egg Supplier
+       </div>
+       <h1 id="hero-title" class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-amber-900 mb-4 leading-tight">PARTAP EGG MART 🥚🐣</h1>
+       <p id="hero-tagline" class="text-xl md:text-2xl text-amber-700 font-medium mb-6">Fresh Eggs Delivered Fast</p>
+       <p class="text-amber-600 mb-8 max-w-lg mx-auto lg:mx-0">Get farm-fresh eggs delivered to your doorstep. Quality you can trust, prices you'll love!</p><!-- CTA Buttons -->
+       <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"><a href="#order" class="bg-amber-500 text-white px-8 py-4 rounded-xl text-lg font-bold btn-3d hover:bg-amber-400 transition flex items-center justify-center gap-2"> <span>🥚</span> Order Eggs Now </a> <a id="whatsapp-hero" href="https://wa.me/916307479366?text=Namaste%20Pratap%20ji%2C%20I%20want%20to%20order%20eggs" target="_blank" rel="noopener noreferrer" class="bg-green-500 text-white px-8 py-4 rounded-xl text-lg font-bold btn-green-3d hover:bg-green-400 transition flex items-center justify-center gap-2">
+         <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+         </svg> WhatsApp Order </a>
+       </div>
+      </div><!-- 3D Egg Visual -->
+      <div class="flex-1 flex justify-center">
+       <div class="relative">
+        <div class="egg-3d w-48 h-64 md:w-64 md:h-80 flex items-center justify-center"><span class="text-6xl md:text-8xl">🥚</span>
+        </div><!-- Floating badges around egg -->
+        <div class="absolute -top-4 -left-4 bg-white rounded-full p-3 shadow-lg animate-bounce"><span class="text-2xl">✨</span>
+        </div>
+        <div class="absolute -bottom-2 -right-4 bg-white rounded-full p-3 shadow-lg" style="animation: bounce-subtle 2s infinite;"><span class="text-2xl">🐣</span>
+        </div>
+       </div>
+      </div>
+     </div><!-- Trust Badges -->
+     <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="trust-badge rounded-2xl p-6 text-center">
+       <div class="text-4xl mb-2">
+        🌿
+       </div>
+       <h3 class="font-bold text-amber-900 text-lg">100% Fresh</h3>
+       <p class="text-amber-700 text-sm">Farm fresh eggs daily</p>
+      </div>
+      <div class="trust-badge rounded-2xl p-6 text-center">
+       <div class="text-4xl mb-2">
+        🧼
+       </div>
+       <h3 class="font-bold text-amber-900 text-lg">Hygienic</h3>
+       <p class="text-amber-700 text-sm">Clean &amp; safe packaging</p>
+      </div>
+      <div class="trust-badge rounded-2xl p-6 text-center">
+       <div class="text-4xl mb-2">
+        🚚
+       </div>
+       <h3 class="font-bold text-amber-900 text-lg">Fast Delivery</h3>
+       <p class="text-amber-700 text-sm">Quick doorstep delivery</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Divider -->
+   <div class="section-divider h-1"></div><!-- Order Section -->
+   <section id="order" class="py-16 px-4 bg-gradient-to-b from-white to-amber-50">
+    <div class="max-w-6xl mx-auto">
+     <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-amber-900 mb-3">Order Fresh Eggs 🥚</h2>
+      <p class="text-amber-600">Select quantity and place your order easily!</p>
+     </div>
+     <div class="grid md:grid-cols-2 gap-8 mb-12"><!-- Single Eggs Card -->
+      <div class="card-3d rounded-3xl p-6 md:p-8">
+       <div class="flex items-center gap-4 mb-6">
+        <div class="egg-small w-14 h-18 flex items-center justify-center"><span class="text-3xl">🥚</span>
+        </div>
+        <div>
+         <h3 class="text-xl font-bold text-amber-900">Single Eggs</h3>
+         <p id="egg-price-display" class="text-amber-600">₹7 per egg</p>
+        </div>
+       </div><!-- Quick Select Buttons -->
+       <div class="grid grid-cols-5 gap-2 mb-6"><button onclick="setEggQuantity(1)" class="quantity-btn rounded-xl py-3 text-amber-900 font-bold hover:scale-105 transition">1</button> <button onclick="setEggQuantity(2)" class="quantity-btn rounded-xl py-3 text-amber-900 font-bold hover:scale-105 transition">2</button> <button onclick="setEggQuantity(3)" class="quantity-btn rounded-xl py-3 text-amber-900 font-bold hover:scale-105 transition">3</button> <button onclick="setEggQuantity(4)" class="quantity-btn rounded-xl py-3 text-amber-900 font-bold hover:scale-105 transition">4</button> <button onclick="setEggQuantity(5)" class="quantity-btn rounded-xl py-3 text-amber-900 font-bold hover:scale-105 transition">5</button>
+       </div><!-- Custom Quantity -->
+       <div class="flex items-center justify-center gap-4 bg-amber-50 rounded-2xl p-4"><button onclick="changeEggQuantity(-1)" class="quantity-btn w-12 h-12 rounded-full text-2xl font-bold text-amber-900 hover:scale-110 transition">−</button>
+        <div class="text-center"><span id="egg-quantity" class="text-4xl font-bold text-amber-900">0</span>
+         <p class="text-amber-600 text-sm">eggs</p>
+        </div><button onclick="changeEggQuantity(1)" class="quantity-btn w-12 h-12 rounded-full text-2xl font-bold text-amber-900 hover:scale-110 transition">+</button>
+       </div>
+       <div class="mt-4 text-center"><span class="text-amber-600">Subtotal: </span> <span id="egg-subtotal" class="text-xl font-bold text-amber-900">₹0</span>
+       </div>
+      </div><!-- Tray Eggs Card -->
+      <div class="card-3d rounded-3xl p-6 md:p-8">
+       <div class="flex items-center gap-4 mb-6">
+        <div class="bg-amber-100 rounded-2xl p-3"><span class="text-3xl">📦</span>
+        </div>
+        <div>
+         <h3 class="text-xl font-bold text-amber-900">Egg Trays</h3>
+         <p id="tray-price-display" class="text-amber-600">₹210 per tray (30 eggs)</p>
+        </div>
+       </div><!-- Quick Select Buttons -->
+       <div class="grid grid-cols-5 gap-2 mb-6"><button onclick="setTrayQuantity(1)" class="quantity-btn rounded-xl py-3 text-amber-900 font-bold hover:scale-105 transition">1</button> <button onclick="setTrayQuantity(2)" class="quantity-btn rounded-xl py-3 text-amber-900 font-bold hover:scale-105 transition">2</button> <button onclick="setTrayQuantity(3)" class="quantity-btn rounded-xl py-3 text-amber-900 font-bold hover:scale-105 transition">3</button> <button onclick="setTrayQuantity(5)" class="quantity-btn rounded-xl py-3 text-amber-900 font-bold hover:scale-105 transition">5</button> <button onclick="setTrayQuantity(10)" class="quantity-btn rounded-xl py-3 text-amber-900 font-bold hover:scale-105 transition">10</button>
+       </div><!-- Custom Quantity -->
+       <div class="flex items-center justify-center gap-4 bg-amber-50 rounded-2xl p-4"><button onclick="changeTrayQuantity(-1)" class="quantity-btn w-12 h-12 rounded-full text-2xl font-bold text-amber-900 hover:scale-110 transition">−</button>
+        <div class="text-center"><span id="tray-quantity" class="text-4xl font-bold text-amber-900">0</span>
+         <p class="text-amber-600 text-sm">trays</p>
+        </div><button onclick="changeTrayQuantity(1)" class="quantity-btn w-12 h-12 rounded-full text-2xl font-bold text-amber-900 hover:scale-110 transition">+</button>
+       </div>
+       <div class="mt-4 text-center"><span class="text-amber-600">Subtotal: </span> <span id="tray-subtotal" class="text-xl font-bold text-amber-900">₹0</span>
+       </div>
+      </div>
+     </div><!-- Total Price Banner -->
+     <div class="bg-gradient-to-r from-amber-400 via-amber-500 to-amber-400 rounded-3xl p-6 mb-12 text-center shadow-xl">
+      <p class="text-amber-900 text-lg mb-2">Total Order Amount</p>
+      <p id="total-price" class="text-4xl md:text-5xl font-extrabold text-white drop-shadow-lg">₹0</p>
+      <p id="total-items" class="text-amber-100 mt-2">0 eggs + 0 trays</p>
+     </div><!-- Order Form -->
+     <div id="contact" class="card-3d rounded-3xl p-6 md:p-8 max-w-2xl mx-auto">
+      <h3 class="text-2xl font-bold text-amber-900 mb-6 text-center">📝 Complete Your Order</h3>
+      <form id="order-form" class="space-y-4">
+       <div><label for="name" class="block text-amber-800 font-medium mb-2">Your Name *</label> <input type="text" id="name" required placeholder="Enter your full name" class="w-full px-4 py-3 rounded-xl border-2 border-amber-200 bg-white text-amber-900 placeholder-amber-400 transition">
+       </div>
+       <div><label for="address" class="block text-amber-800 font-medium mb-2">Delivery Address *</label> <textarea id="address" required rows="2" placeholder="Enter complete delivery address" class="w-full px-4 py-3 rounded-xl border-2 border-amber-200 bg-white text-amber-900 placeholder-amber-400 transition resize-none"></textarea>
+       </div>
+       <div><label for="mobile" class="block text-amber-800 font-medium mb-2">Mobile Number *</label> <input type="tel" id="mobile" required placeholder="Enter 10-digit mobile number" pattern="[0-9]{10}" class="w-full px-4 py-3 rounded-xl border-2 border-amber-200 bg-white text-amber-900 placeholder-amber-400 transition">
+       </div><!-- Order Summary in Form -->
+       <div class="bg-amber-50 rounded-xl p-4 space-y-2">
+        <div class="flex justify-between text-amber-700"><span>Eggs:</span> <span id="form-eggs">0 eggs (₹0)</span>
+        </div>
+        <div class="flex justify-between text-amber-700"><span>Trays:</span> <span id="form-trays">0 trays (₹0)</span>
+        </div>
+        <div class="border-t border-amber-200 pt-2 flex justify-between font-bold text-amber-900"><span>Total:</span> <span id="form-total">₹0</span>
+        </div>
+       </div><button type="submit" class="w-full bg-green-500 text-white py-4 rounded-xl text-lg font-bold btn-green-3d hover:bg-green-400 transition flex items-center justify-center gap-3">
+        <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24">
+         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+        </svg> Send Order via WhatsApp </button>
+      </form><!-- Success Message -->
+      <div id="success-message" class="hidden mt-6 bg-green-100 border-2 border-green-400 rounded-xl p-6 text-center"><span class="text-5xl mb-4 block">✅</span>
+       <h4 class="text-xl font-bold text-green-800 mb-2">Order Sent Successfully!</h4>
+       <p class="text-green-700">Your order has been sent via WhatsApp. We will contact you soon!</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Location Section -->
+   <section id="location" class="py-16 px-4 bg-gradient-to-b from-amber-50 to-amber-100">
+    <div class="max-w-6xl mx-auto">
+     <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-amber-900 mb-3">📍 Visit Our Shop</h2>
+      <p class="text-amber-600">Find us at our convenient location</p>
+     </div>
+     <div class="grid md:grid-cols-2 gap-8"><!-- Map Placeholder -->
+      <div class="card-3d rounded-3xl overflow-hidden h-80 md:h-96 relative">
+       <div class="absolute inset-0 bg-gradient-to-br from-green-100 to-green-200 flex items-center justify-center">
+        <div class="text-center p-6">
+         <div class="text-6xl mb-4">
+          🗺️
+         </div>
+         <h3 class="text-xl font-bold text-green-800 mb-2">Shop Location</h3>
+         <p id="map-address" class="text-green-700 mb-4">SARAYA BAZAR, PIPRAICH ROAD<br>
+          Near VIMAL VIDYA MANDIR SCHOOL</p><a href="https://maps.google.com/?q=SARAYA+BAZAR+PIPRAICH+ROAD+VIMAL+VIDYA+MANDIR+SCHOOL" target="_blank" rel="noopener noreferrer" class="inline-block bg-green-500 text-white px-6 py-3 rounded-xl font-semibold hover:bg-green-400 transition"> Open in Google Maps → </a>
+        </div>
+       </div><!-- Decorative elements -->
+       <div class="absolute top-4 left-4 w-3 h-3 bg-red-500 rounded-full animate-ping"></div>
+       <div class="absolute top-4 left-4 w-3 h-3 bg-red-500 rounded-full"></div>
+      </div><!-- Contact Info -->
+      <div class="space-y-6">
+       <div class="card-3d rounded-3xl p-6">
+        <div class="flex items-start gap-4">
+         <div class="bg-amber-100 rounded-2xl p-3 flex-shrink-0"><span class="text-3xl">📍</span>
+         </div>
+         <div>
+          <h3 class="font-bold text-amber-900 text-lg mb-2">Shop Address</h3>
+          <p id="contact-address" class="text-amber-700 leading-relaxed">SARAYA BAZAR PIPRAICH ROAD<br>
+            VIMAL VIDYA MANDIR SCHOOL KE PASS<br>
+            Gorakhpur, Uttar Pradesh</p>
+         </div>
+                                                                                                                                                                                                                                            </div>
